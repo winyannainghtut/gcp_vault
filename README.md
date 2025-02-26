@@ -87,6 +87,20 @@ vault write khaw/config credentials=@./vault-key.json project="khaw-lab"
 vault write -f khaw/config/rotate-root
 ```
 
+### Binding Configuration (khaw-binding.hcl)
+```hcl
+# GCP Resource binding for project-level access
+resource "//cloudresourcemanager.googleapis.com/projects/khaw-lab" {
+  roles = ["roles/viewer"]
+}
+
+# Optional: Add more granular bindings for specific services
+resource "//storage.googleapis.com/projects/khaw-lab/buckets/my-bucket" {
+  roles = ["roles/storage.objectViewer"]
+}
+```
+Ref: https://developer.hashicorp.com/vault/docs/secrets/gcp#bindings
+
 ### Create Roleset
 ```bash
 vault write khaw/roleset/khaw-token-roleset-3 \
@@ -105,19 +119,6 @@ path "khaw/roleset/*" {
   capabilities = ["read", "list"]
 }
 
-```
-
-### Binding Configuration
-```hcl
-# GCP Resource binding for project-level access
-resource "//cloudresourcemanager.googleapis.com/projects/khaw-lab" {
-  roles = ["roles/viewer"]
-}
-
-# Optional: Add more granular bindings for specific services
-resource "//storage.googleapis.com/projects/khaw-lab/buckets/my-bucket" {
-  roles = ["roles/storage.objectViewer"]
-}
 ```
 
 ### Apply Policy to User
