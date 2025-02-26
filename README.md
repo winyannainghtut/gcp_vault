@@ -1,5 +1,9 @@
 # GCP and Vault Integration Setup Notes
 
+## Diagram
+
+![Alt text](./vault_gcp.png)
+
 ## Reference
 
 https://developer.hashicorp.com/vault/docs/secrets/gcp
