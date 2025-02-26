@@ -1,5 +1,9 @@
 # GCP and Vault Integration Setup Notes
 
+## Reference
+
+https://developer.hashicorp.com/vault/docs/secrets/gcp
+
 ## Prerequisites
 
 - Google Cloud SDK (gcloud CLI) - Required for Vault backend operations
